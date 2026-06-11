@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebView APK 测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .url-display {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            color: #666;
+            word-break: break-all;
+        }
+        
+        .button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .button:active {
+            transform: translateY(0);
+        }
+        
+        .info {
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .auto-redirect {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 10px;
+            color: #856404;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .loading {
+            animation: pulse 1.5s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 WebView APK 测试</h1>
+        
+        <div class="url-display">
+            目标网站: https://5rb5va315595.vicp.fun/
+        </div>
+        
+        <div>
+            <a href="https://5rb5va315595.vicp.fun/" target="_blank" class="button">
+                打开网站
+            </a>
+        </div>
+        
+        <div class="auto-redirect">
+            <p class="loading">⏳ 5秒后自动跳转...</p>
+        </div>
+        
+        <div class="info">
+            <p><strong>应用说明：</strong></p>
+            <p>这是一个测试页面，模拟Python APK应用的功能。</p>
+            <p>实际应用将使用Kivy框架构建，可以在Android设备上运行。</p>
+        </div>
+        
+        <div class="status info">
+            <p>💡 提示：点击按钮或等待自动跳转</p>
+        </div>
+    </div>
+
+    <script>
+        // 自动跳转功能
+        let countdown = 5;
+        const countdownElement = document.querySelector('.auto-redirect p');
+        
+        const countdownInterval = setInterval(() => {
+            countdown--;
+            if (countdown > 0) {
+                countdownElement.textContent = `⏳ ${countdown}秒后自动跳转...`;
+            } else {
+                clearInterval(countdownInterval);
+                countdownElement.textContent = '🚀 正在跳转...';
+                window.location.href = 'https://5rb5va315595.vicp.fun/';
+            }
+        }, 1000);
+        
+        // 如果用户点击按钮，取消自动跳转
+        document.querySelector('.button').addEventListener('click', () => {
+            clearInterval(countdownInterval);
+            countdownElement.textContent = '✅ 已手动打开网站';
+        });
+    </script>
+</body>
+</html>
